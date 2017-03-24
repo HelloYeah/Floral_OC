@@ -22,7 +22,7 @@ import Foundation
  - 根据情景传:
  - isVideo	true (是否是获取视频列表)
  - cateId	a56aa5d0-aa6b-42b7-967d-59b77771e6eb(专题的类型, 不传的话是默认)
- http://m.htxq.net/servlet/SysArticleServlet?action=mainList
+ http://m.htxq.net/servlet/SysArticleServlet?action=mainList?currentPageIndex=1?pageSize=10
  
  // MARK: - 每周TOP10的获取
  /**
