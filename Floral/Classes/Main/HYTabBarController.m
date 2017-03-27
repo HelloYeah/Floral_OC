@@ -11,6 +11,7 @@
 #import "HYSubjectViewController.h"
 #import "HYProfileViewController.h"
 #import "HYDiscoverViewController.h"
+#import "HYShoppingMallViewController.h"
 
 @interface HYTabBarController ()
 
@@ -48,7 +49,7 @@
 
     [self addChildViewControllerWithClassname:[HYSubjectViewController description] imagename:@"tb_0" title:@"专题"];
     [self addChildViewControllerWithClassname:[HYDiscoverViewController description] imagename:@"tb_0" title:@"发现"];
-    [self addChildViewControllerWithClassname:[HYDiscoverViewController description] imagename:@"tb_1" title:@"商城"];
+    [self addChildViewControllerWithClassname:[HYShoppingMallViewController description] imagename:@"tb_1" title:@"商城"];
     [self addChildViewControllerWithClassname:[HYProfileViewController description] imagename:@"tb_2" title:@"我的"];
 }
 

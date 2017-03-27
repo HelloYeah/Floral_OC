@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B458D1621E8903890010DFDE /* HYShoppingMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B458D1611E8903890010DFDE /* HYShoppingMallViewController.m */; };
 		B469F0861E84E68300893181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B469F0851E84E68300893181 /* main.m */; };
 		B469F0891E84E68300893181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B469F0881E84E68300893181 /* AppDelegate.m */; };
 		B469F0911E84E68400893181 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B469F0901E84E68400893181 /* Assets.xcassets */; };
@@ -129,6 +130,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B458D1601E8903890010DFDE /* HYShoppingMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYShoppingMallViewController.h; sourceTree = "<group>"; };
+		B458D1611E8903890010DFDE /* HYShoppingMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYShoppingMallViewController.m; sourceTree = "<group>"; };
 		B469F0811E84E68300893181 /* Floral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Floral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B469F0851E84E68300893181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B469F0871E84E68300893181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 		B469F17A1E84EB9C00893181 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B458D1601E8903890010DFDE /* HYShoppingMallViewController.h */,
+				B458D1611E8903890010DFDE /* HYShoppingMallViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1325,6 +1330,7 @@
 				B47025BB1E85261600B621AA /* YYTextAsyncLayer.m in Sources */,
 				B470253F1E8525FA00B621AA /* NSObject+MJKeyValue.m in Sources */,
 				B47025B71E85261600B621AA /* NSAttributedString+YYText.m in Sources */,
+				B458D1621E8903890010DFDE /* HYShoppingMallViewController.m in Sources */,
 				B47025B81E85261600B621AA /* NSParagraphStyle+YYText.m in Sources */,
 				B470253B1E8525FA00B621AA /* MJPropertyKey.m in Sources */,
 				B469F1501E84E72800893181 /* MJRefreshBackStateFooter.m in Sources */,

@@ -97,13 +97,6 @@
     return cell;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    NSLog(@"%f",scrollView.contentOffset.y);
-}
-
-
-
 #pragma mark - UIEvents
 - (void)searchClick {
 
