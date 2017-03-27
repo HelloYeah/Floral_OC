@@ -31,6 +31,8 @@
 
 @implementation HYSubjectViewController
 
+#pragma mark - lifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,6 +54,8 @@
         self.collectionView.contentOffset = CGPointMake(0, - kTopViewHeight);
     });
 }
+
+#pragma mark - delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
@@ -99,8 +103,37 @@
     NSLog(@"%f",scrollView.contentOffset.y);
 }
 
-- (void)requestGetSysCategoryServlet {
 
+
+#pragma mark - UIEvents
+- (void)searchClick {
+
+}
+
+#pragma mark - request
+- (void)loadData {
+    
+    NSDictionary *parameters = @{@"currentPageIndex":@(self.currentPageIndex)};
+    
+    [[HYNetworkTool shareTool] GET:@"http://m.htxq.net/servlet/SysArticleServlet?action=mainList&pageSize=10&isVideo=0" parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_collectionView.mj_footer endRefreshing];
+        NSArray *result = responseObject[@"result"];
+        if (result.count > 0) {
+           self.currentPageIndex += 1;
+           [self.dataArray addObjectsFromArray:[HYArtcleModel mj_objectArrayWithKeyValuesArray:result]];
+           [self.collectionView reloadData];
+        }else{
+            [self showHint:@"网络异常" ];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self showHint:@"网络异常"];
+    }];
+
+}
+
+- (void)requestGetSysCategoryServlet {
+    
     [[HYNetworkTool shareTool] GET:@"http://m.htxq.net/servlet/SysCategoryServlet?action=getList" parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *result = responseObject[@"result"];
         if (result.count > 0){
@@ -126,36 +159,10 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self showHint:@"网络异常"];
     }];
-
-}
-
-
-- (void)searchClick {
-
-}
-
-- (void)loadData {
     
-    NSDictionary *parameters = @{@"currentPageIndex":@(self.currentPageIndex)};
-    
-    [[HYNetworkTool shareTool] GET:@"http://m.htxq.net/servlet/SysArticleServlet?action=mainList&pageSize=10&isVideo=0" parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [_collectionView.mj_footer endRefreshing];
-        NSArray *result = responseObject[@"result"];
-        if (result.count > 0) {
-           self.currentPageIndex += 1;
-           [self.dataArray addObjectsFromArray:[HYArtcleModel mj_objectArrayWithKeyValuesArray:result]];
-           [self.collectionView reloadData];
-        }else{
-            [self showHint:@"网络异常" ];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self showHint:@"网络异常"];
-    }];
-
 }
 
-
+#pragma mark - getter/setter
 - (HYCollectionTopView *)topView {
     
     if (!_topView) {
