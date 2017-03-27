@@ -162,6 +162,7 @@
     }
     return _topView;
 }
+
 - (UICollectionView *)collectionView {
     
     if (!_collectionView) {

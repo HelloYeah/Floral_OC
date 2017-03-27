@@ -114,7 +114,7 @@ static const NSInteger SKUserInfoSpace = 10;
     self.companyLabel.text = @"这家伙很懒什么都没留下";
     self.nameLabel.text = @"匿名用户";
     self.vipImgView.image = [UIImage imageNamed:@"user_vip_crown"];
-    self.headerImgView.image = [UIImage imageNamed:@"p_avatar"];
+    self.headerImgView.image = [UIImage imageNamed:@"LOGO_85x85_"];
     
 }
 
