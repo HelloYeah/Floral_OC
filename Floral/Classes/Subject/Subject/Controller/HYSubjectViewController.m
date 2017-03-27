@@ -39,8 +39,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
-    self.currentPageIndex = 1;
-//    	http://m.htxq.net/servlet/SysCategoryServlet?action=getList
     [self requestGetSysCategoryServlet];
     [self loadData];
 }
@@ -56,8 +54,6 @@
     
     HYSubjectCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYSubjectCollectionCell description] forIndexPath:indexPath];
     HYArtcleModel *artcelModel = self.dataArray[indexPath.item];
-    HYAuthorModel *au = artcelModel.author;
-    HYCategoryModel *category = artcelModel.category;
     NSLog(@"%ld-----%@",artcelModel.ID,artcelModel.smallIcon);
     cell.artcleModel = artcelModel;
     return cell;

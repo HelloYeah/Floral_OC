@@ -18,7 +18,7 @@
     // 设置为不透明
     [[UINavigationBar appearance] setTranslucent:NO];
     // 设置导航栏背景颜色
-    [UINavigationBar appearance].barTintColor = Color(246, 246, 246);
+    [UINavigationBar appearance].barTintColor = Color(240, 240, 240);
     // 设置导航栏标题文字颜色
     // 创建字典保存文字大小和颜色
     NSMutableDictionary * color = [NSMutableDictionary dictionary];
@@ -38,9 +38,7 @@
     atts[NSForegroundColorAttributeName] = Color(21, 21, 21);
     // 将字典给item
     [item setTitleTextAttributes:atts forState:UIControlStateNormal];
-    
-    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

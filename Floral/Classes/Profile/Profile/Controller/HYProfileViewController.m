@@ -10,14 +10,11 @@
 #import "HYNavigationController.h"
 #import "HYSettingViewController.h"
 #import "HYProfileHeaderView.h"
-#import "UIView+Frame.h"
 
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
 @interface HYProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,strong) HYProfileHeaderView * headerView;
-@property (nonatomic,strong) UIButton * settingBtn;
 @property (nonatomic,strong) UITableView *userHomeTableView;
 @end
 
@@ -30,16 +27,12 @@
     
     [super viewDidLoad];
     [self.view addSubview:self.userHomeTableView];
-    [self.view addSubview:self.headerView];
-    [self.view addSubview:self.settingBtn];
+
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationItem.title = @"匿名用户";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"pc_setting_40x40"] style:UIBarButtonItemStylePlain target:self action:@selector(settingClick)];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     
@@ -64,38 +57,38 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = Color(250,250,250);
-        cell.textLabel.textColor = Color(255, 109, 0);
-        cell.textLabel.font = kFont(15);
+        cell.textLabel.textColor = Color(64, 64, 64);
+        cell.textLabel.font = kFont(16);
     }
     switch (indexPath.row) {
         case 0:
         {
-            cell.textLabel.text = @"我的特权";
-            cell.imageView.image = [UIImage imageNamed:@"myVip_icon"];
+            cell.textLabel.text = @"我的发布";
+            cell.imageView.image = [UIImage imageNamed:@"f_p_cart_19x19"];
         }
             break;
         case 1:
         {
-            cell.textLabel.text = @"我的钱包";
-            cell.imageView.image = [UIImage imageNamed:@"myWallets_icon"];
+            cell.textLabel.text = @"我的消息";
+            cell.imageView.image = [UIImage imageNamed:@"f_p_order_19x19"];
         }
             break;
         case 2:
         {
-            cell.textLabel.text = @"我的活动";
-            cell.imageView.image = [UIImage imageNamed:@"myActivity_icon"];
+            cell.textLabel.text = @"优惠券";
+            cell.imageView.image = [UIImage imageNamed:@"f_p_course_19x19"];
         }
             break;
         case 3:
         {
-            cell.textLabel.text = @"我的提问";
-            cell.imageView.image = [UIImage imageNamed:@"myQuestion_icon"];
+            cell.textLabel.text = @"我的订单";
+            cell.imageView.image = [UIImage imageNamed:@"f_p_order_19x19"];
         }
             break;
         case 4:
         {
-            cell.textLabel.text = @"我的回答";
-            cell.imageView.image = [UIImage imageNamed:@"myAnswer_icon"];
+            cell.textLabel.text = @"我的购物车";
+            cell.imageView.image = [UIImage imageNamed:@"f_p_cart_19x19"];
         }
             break;
             
@@ -103,6 +96,16 @@
             break;
     }
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    return [[UIView new] init];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 5;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -114,18 +117,9 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
 }
-#pragma mark UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    CGFloat headH = - offsetY;
-    if (headH <= 64 ) {
-        headH = 64;
-    }
-    
-    [self.headerView alphaWithHeight:headH orignHeight:kHeaderViewHeight];
-}
+
+
 
 #pragma mark UI Event
 
@@ -139,15 +133,14 @@
 - (UITableView *)userHomeTableView {
     
     if (!_userHomeTableView) {
-        _userHomeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 49) style:UITableViewStylePlain];
+        _userHomeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49) style:UITableViewStylePlain];
         
         _userHomeTableView.delegate = self;
         _userHomeTableView.dataSource = self;
-        _userHomeTableView.backgroundColor = Color(250,250,250);
+        _userHomeTableView.backgroundColor = Color(240,240,240);
+        _userHomeTableView.tableHeaderView = self.headerView;
         _userHomeTableView.tableFooterView = [UIView new];
         _userHomeTableView.showsVerticalScrollIndicator = NO;
-        _userHomeTableView.contentInset = UIEdgeInsetsMake(kHeaderViewHeight, 0, 0, 0);
-        
     }
     return _userHomeTableView;
 }
@@ -155,23 +148,12 @@
 - (HYProfileHeaderView *)headerView{
     
     if (!_headerView) {
-        _headerView = [[HYProfileHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeaderViewHeight)];
+        _headerView = [[HYProfileHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,200)];
         _headerView.checkUserInfomationBlock = ^{
             NSLog(@"点击了头像！！！");
         };
     }
     return _headerView;
-}
-
-- (UIButton *)settingBtn{
-    
-    if (!_settingBtn) {
-        _settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 10 - 44, 20, 44, 44)];
-        _settingBtn.imageView.contentMode = UIViewContentModeCenter;
-        [_settingBtn setImage:[UIImage imageNamed:@"Setting"]  forState:UIControlStateNormal];
-        [_settingBtn addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _settingBtn;
 }
 
 @end

@@ -1,4 +1,3 @@
-
 //
 //  HYHomeViewController.m
 //  HYLive
@@ -19,7 +18,6 @@
     
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -35,7 +33,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = Color(250,250,250);
-        cell.textLabel.textColor = Color(107, 84, 69);
+        cell.textLabel.textColor = Color(64, 64, 64);
         cell.textLabel.font = kFont(15);
     }
     switch (indexPath.row) {

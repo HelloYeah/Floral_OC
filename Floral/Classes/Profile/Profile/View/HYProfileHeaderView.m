@@ -9,10 +9,10 @@
 #import "HYProfileHeaderView.h"
 #import "UIView+Frame.h"
 
-#define SKUserInfoHeaderImageWidth (60 * SCREEN_WIDTH_RATIO)
-#define SKUserInfoVipImageWidth (60 * SCREEN_WIDTH_RATIO)
-#define SKUserInfoVipImageHeight (25 * SCREEN_WIDTH_RATIO)
-#define SKUserInfoNameAndCompanyHeight (25 * SCREEN_WIDTH_RATIO)
+#define SKUserInfoHeaderImageWidth (60 * kScreenWidthRatio)
+#define SKUserInfoVipImageWidth (60 * kScreenWidthRatio)
+#define SKUserInfoVipImageHeight (25 * kScreenWidthRatio)
+#define SKUserInfoNameAndCompanyHeight (25 * kScreenWidthRatio)
 static const NSInteger SKUserInfoSpace = 10;
 @interface HYProfileHeaderView ()
 
@@ -51,11 +51,12 @@ static const NSInteger SKUserInfoSpace = 10;
 
 - (void)setUpSubviews
 {
+    self.backgroundColor = Color(250, 250, 250);
     self.bgImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-    self.bgImgView.image = [UIImage imageNamed:@"LOL"];
     self.clipsToBounds = YES;
     self.bgImgView.userInteractionEnabled = YES;
     [self addSubview:self.bgImgView];
+    
     self.HeaderBorderView = [[UIView alloc]initWithFrame:CGRectMake((self.width - SKUserInfoHeaderImageWidth)/2 - SKUserInfoSpace / 2,
                                                                     (self.height - SKUserInfoHeaderImageWidth)/2 -SKUserInfoSpace / 2,
                                                                     SKUserInfoHeaderImageWidth + SKUserInfoSpace,
@@ -78,19 +79,19 @@ static const NSInteger SKUserInfoSpace = 10;
     [self addSubview:self.vipImgView];
     self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(SKUserInfoSpace,
                                                               self.headerImgView.bottom + SKUserInfoSpace,
-                                                              SCREEN_WIDTH - 2 * SKUserInfoSpace,
+                                                              kScreenWidth - 2 * SKUserInfoSpace,
                                                               SKUserInfoNameAndCompanyHeight)];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
-    self.nameLabel.font = [UIFont systemFontOfSize:16];
-    self.nameLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.font = kFont(15);
+    self.nameLabel.textColor = Color(120, 120, 120);
     [self addSubview:self.nameLabel];
     self.companyLabel = [[UILabel alloc]initWithFrame:CGRectMake(SKUserInfoSpace,
                                                                  self.nameLabel.bottom,
-                                                                 SCREEN_WIDTH - 2 * SKUserInfoSpace,
+                                                                 kScreenWidth - 2 * SKUserInfoSpace,
                                                                  SKUserInfoNameAndCompanyHeight)];
     self.companyLabel.textAlignment = NSTextAlignmentCenter;
-    self.companyLabel.font = [UIFont systemFontOfSize:14];
-    self.companyLabel.textColor = [UIColor whiteColor];
+    self.companyLabel.font = kFont(12);
+    self.companyLabel.textColor = Color(200, 200, 200);
     [self addSubview:self.companyLabel];
     
     self.nameLabel.backgroundColor = [UIColor clearColor];
@@ -110,10 +111,10 @@ static const NSInteger SKUserInfoSpace = 10;
  */
 - (void)setUserInfoData{
 
-    self.companyLabel.text = @"来自 星星的你";
-    self.nameLabel.text = @"昵称: Hello World";
+    self.companyLabel.text = @"这家伙很懒什么都没留下";
+    self.nameLabel.text = @"匿名用户";
     self.vipImgView.image = [UIImage imageNamed:@"user_vip_crown"];
-    self.headerImgView.image = [UIImage imageNamed:@"lion"];
+    self.headerImgView.image = [UIImage imageNamed:@"p_avatar"];
     
 }
 
@@ -124,29 +125,6 @@ static const NSInteger SKUserInfoSpace = 10;
     }
 }
 
-- (void)alphaWithHeight:(CGFloat)height orignHeight:(CGFloat)orignHeight{
-    
-    CGFloat offsetY = height - orignHeight;
-    CGFloat alpha = (height - 64) / (orignHeight - 64);
-    CGFloat scale = MAX(alpha, 1);
-    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, height);
-    self.bgImgView.width =  SCREEN_WIDTH * scale;
-    self.bgImgView.height = MAX(height * scale, orignHeight);
-    self.bgImgView.center = CGPointMake(self.width * 0.5, self.height * 0.5);
-    
-    self.headerImgView.top = (orignHeight - SKUserInfoHeaderImageWidth)/2 + offsetY;
-    self.HeaderBorderView.top = (orignHeight - SKUserInfoHeaderImageWidth)/2 - SKUserInfoSpace / 2 + offsetY;
-    self.vipImgView.top = self.headerImgView.top - SKUserInfoVipImageHeight;
-    self.nameLabel.top = self.headerImgView.bottom + SKUserInfoSpace;
-    self.companyLabel.top = self.nameLabel.bottom;
 
-    
-    
-    self.HeaderBorderView.alpha = alpha;
-    self.headerImgView.alpha = alpha;
-    self.nameLabel.alpha = alpha;
-    self.companyLabel.alpha = alpha;
-    self.vipImgView.alpha = alpha;
-}
 
 @end
