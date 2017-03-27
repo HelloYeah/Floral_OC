@@ -127,6 +127,8 @@
 {
     [super placeSubviews];
     
+    
+    
     if (self.stateLabel.hidden) return;
     
     BOOL noConstrainsOnStatusLabel = self.stateLabel.constraints.count == 0;

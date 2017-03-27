@@ -106,6 +106,8 @@
 		B47025BF1E85261600B621AA /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B47025A51E85261600B621AA /* YYLabel.m */; };
 		B47025C01E85261600B621AA /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B47025A81E85261600B621AA /* YYTextView.m */; };
 		B476A35A1E88AE0C006BFBD6 /* HYDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B476A3591E88AE0C006BFBD6 /* HYDetailController.m */; };
+		B476A35D1E88C601006BFBD6 /* HYCollectionTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B476A35C1E88C601006BFBD6 /* HYCollectionTopView.m */; };
+		B476A3601E88DD7B006BFBD6 /* HYSysCategoryServletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B476A35F1E88DD7B006BFBD6 /* HYSysCategoryServletModel.m */; };
 		B48C87D41E88A50200934AB2 /* HYSubjectCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */; };
 /* End PBXBuildFile section */
 
@@ -333,6 +335,10 @@
 		B47025A81E85261600B621AA /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
 		B476A3581E88AE0C006BFBD6 /* HYDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDetailController.h; sourceTree = "<group>"; };
 		B476A3591E88AE0C006BFBD6 /* HYDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDetailController.m; sourceTree = "<group>"; };
+		B476A35B1E88C601006BFBD6 /* HYCollectionTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCollectionTopView.h; sourceTree = "<group>"; };
+		B476A35C1E88C601006BFBD6 /* HYCollectionTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCollectionTopView.m; sourceTree = "<group>"; };
+		B476A35E1E88DD7B006BFBD6 /* HYSysCategoryServletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSysCategoryServletModel.h; sourceTree = "<group>"; };
+		B476A35F1E88DD7B006BFBD6 /* HYSysCategoryServletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSysCategoryServletModel.m; sourceTree = "<group>"; };
 		B48C87D21E88A50200934AB2 /* HYSubjectCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSubjectCollectionCell.h; sourceTree = "<group>"; };
 		B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSubjectCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -951,6 +957,8 @@
 				B469F1B01E8519B300893181 /* HYCategoryModel.m */,
 				B469F1B21E8519DF00893181 /* HYAuthorModel.h */,
 				B469F1B31E8519DF00893181 /* HYAuthorModel.m */,
+				B476A35E1E88DD7B006BFBD6 /* HYSysCategoryServletModel.h */,
+				B476A35F1E88DD7B006BFBD6 /* HYSysCategoryServletModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -962,6 +970,8 @@
 				B469F1891E84F83100893181 /* HYCollectionSectionHeader.m */,
 				B48C87D21E88A50200934AB2 /* HYSubjectCollectionCell.h */,
 				B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */,
+				B476A35B1E88C601006BFBD6 /* HYCollectionTopView.h */,
+				B476A35C1E88C601006BFBD6 /* HYCollectionTopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1371,7 +1381,9 @@
 				B469F1581E84E72800893181 /* UIScrollView+MJRefresh.m in Sources */,
 				B469F16C1E84EA9600893181 /* HYDiscoverViewController.m in Sources */,
 				B469F0891E84E68300893181 /* AppDelegate.m in Sources */,
+				B476A35D1E88C601006BFBD6 /* HYCollectionTopView.m in Sources */,
 				B469F1B11E8519B300893181 /* HYCategoryModel.m in Sources */,
+				B476A3601E88DD7B006BFBD6 /* HYSysCategoryServletModel.m in Sources */,
 				B470256F1E85260D00B621AA /* UIImage+MultiFormat.m in Sources */,
 				B47025BF1E85261600B621AA /* YYLabel.m in Sources */,
 				B469F1911E84FB4000893181 /* UIViewController+HUD.m in Sources */,

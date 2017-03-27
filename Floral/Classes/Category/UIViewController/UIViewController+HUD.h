@@ -23,6 +23,17 @@
 - (void)showIndicatorHint:(NSString *)hint yOffset:(CGFloat)yOffset;
 
 /**
+ 显示提示信息(有菊花, 一直显示, 不消失)
+ 
+ - parameter view:    显示在哪个View上
+ - parameter hint:    提示信息
+
+ */
+- (void)showIndicatorHint:(NSString *)hint;
+
+- (void)showHint:(NSString *)hint;
+
+/**
      显示纯文字提示信息(显示在keywindow上)
      
      - parameter hint: 提示信息

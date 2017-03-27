@@ -1,4 +1,5 @@
 
+
 //
 //  HYHomeViewController.m
 //  HYLive
@@ -16,14 +17,18 @@
 #import "HYAuthorModel.h"
 #import "HYSubjectCollectionCell.h"
 #import "HYDetailController.h"
+#import "HYCollectionTopView.h"
+#import "HYSysCategoryServletModel.h"
 
+#define kTopViewHeight 600 * kScreenWidthRatio
 @interface HYSubjectViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
+@property (nonatomic,strong) HYCollectionTopView *topView;
 @property (nonatomic,assign) NSInteger  currentPageIndex;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @end
-//http://m.htxq.net/servlet/SysArticleServlet?action=mainList&currentPageIndex=1&pageSize=10&isVideo=0
+
 @implementation HYSubjectViewController
 
 - (void)viewDidLoad {
@@ -35,6 +40,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.currentPageIndex = 1;
+//    	http://m.htxq.net/servlet/SysCategoryServlet?action=getList
+    [self requestGetSysCategoryServlet];
     [self loadData];
 }
 
@@ -51,7 +58,7 @@
     HYArtcleModel *artcelModel = self.dataArray[indexPath.item];
     HYAuthorModel *au = artcelModel.author;
     HYCategoryModel *category = artcelModel.category;
-    NSLog(@"%ld--%ld---%@--%@--%@",indexPath.row,indexPath.item,artcelModel.desc,au.userName,category.name);
+    NSLog(@"%ld-----%@",artcelModel.ID,artcelModel.smallIcon);
     cell.artcleModel = artcelModel;
     return cell;
 }
@@ -82,7 +89,35 @@
     return cell;
 }
 
+- (void)requestGetSysCategoryServlet {
 
+    [[HYNetworkTool shareTool] GET:@"http://m.htxq.net/servlet/SysCategoryServlet?action=getList" parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray *result = responseObject[@"result"];
+        if (result.count > 0){
+            
+            NSArray *tempArray = [HYSysCategoryServletModel mj_objectArrayWithKeyValuesArray:result];
+            self.topView.sysCategoryServlets = tempArray;
+            self.topView.wallpapers = @[@"http://static.htxq.net/UploadFiles/2017/03/07/20170307141120878968.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/07/20170307140812696393.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/09/20170309164146893568.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/09/20170309162757806146.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/08/20170308204222254187.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/08/20170308175120532126.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/08/20170308103232421179.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/10/20170310101058200296.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/20/20170320194126563667.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/16/20170316140412690242.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/16/20170316184955243776.jpg",
+                                        @"http://static.htxq.net/UploadFiles/2017/03/17/20170317184723774861.jpg",
+                                        ];
+        }else{
+            [self showHint:@"网络异常" ];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self showHint:@"网络异常"];
+    }];
+
+}
 
 
 - (void)loadData {
@@ -98,15 +133,22 @@
            [self.dataArray addObjectsFromArray:[HYArtcleModel mj_objectArrayWithKeyValuesArray:result]];
            [self.collectionView reloadData];
         }else{
-           // [self showHint:@"网络异常"];
+            [self showHint:@"网络异常" ];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //[self showHint:@"网络异常"];
+        [self showHint:@"网络异常"];
     }];
 
 }
 
 
+- (HYCollectionTopView *)topView {
+    
+    if (!_topView) {
+        _topView = [[HYCollectionTopView alloc] initWithFrame:CGRectMake(0, - kTopViewHeight, kScreenWidth, kTopViewHeight)];
+    }
+    return _topView;
+}
 - (UICollectionView *)collectionView {
     
     if (!_collectionView) {
@@ -120,8 +162,13 @@
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
         _collectionView.height = kScreenHeight - kTopBarHeight - kTabBarHeight;
+        
+        _collectionView.contentInset = UIEdgeInsetsMake(kTopViewHeight, 0, 0, 0);
+        [_collectionView addSubview: self.topView];
+        
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
+        
         [_collectionView registerClass:[HYSubjectCollectionCell class] forCellWithReuseIdentifier:[HYSubjectCollectionCell description]];
         _collectionView.backgroundColor = Color(240, 240, 240);
         [_collectionView registerClass:[HYCollectionSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:[HYCollectionSectionHeader description]];
@@ -133,8 +180,8 @@
             });
         }];
    
-        
         _collectionView.mj_header = header;
+        _collectionView.mj_header.ignoredScrollViewContentInsetTop = kTopViewHeight;
         
         _collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             NSLog(@"加载！！！");

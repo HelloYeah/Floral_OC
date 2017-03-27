@@ -21,6 +21,13 @@ static const char *key = "MBProgressHUD";
     objc_setAssociatedObject(self, key, hud, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)showIndicatorHint:(NSString *)hint {
+    
+    [self showIndicatorHint:hint yOffset:0];
+}
+
+
+
 - (void)showIndicatorHint:(NSString *)hint  yOffset:(CGFloat)yOffset {
     
     MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];;
@@ -32,6 +39,11 @@ static const char *key = "MBProgressHUD";
     HUD.margin = 20.0;
     self.hud = HUD;
 }
+
+- (void)showHint:(NSString *)hint {
+    [self showHint:hint duration:2.0 yOffset:0];
+}
+
 
 - (void)showHint:(NSString *)hint duration:(NSTimeInterval)timeInterval yOffset:(CGFloat)yOffset {
 
