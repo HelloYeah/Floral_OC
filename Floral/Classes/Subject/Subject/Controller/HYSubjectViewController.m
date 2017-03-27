@@ -20,7 +20,7 @@
 #import "HYCollectionTopView.h"
 #import "HYSysCategoryServletModel.h"
 
-#define kTopViewHeight 600 * kScreenWidthRatio
+#define kTopViewHeight 700 * kScreenWidthRatio
 @interface HYSubjectViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
@@ -35,14 +35,23 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"花田小憩";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"f_search"] style:UIBarButtonItemStylePlain target:self action:@selector(loadData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"f_search"] style:UIBarButtonItemStylePlain target:self action:@selector(searchClick)];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     [self requestGetSysCategoryServlet];
     [self loadData];
+    
 }
 
+- (void)viewWillLayoutSubviews {
+    
+    [super viewWillLayoutSubviews];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.collectionView.contentOffset = CGPointMake(0, - kTopViewHeight);
+    });
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
@@ -85,6 +94,11 @@
     return cell;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSLog(@"%f",scrollView.contentOffset.y);
+}
+
 - (void)requestGetSysCategoryServlet {
 
     [[HYNetworkTool shareTool] GET:@"http://m.htxq.net/servlet/SysCategoryServlet?action=getList" parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -115,6 +129,10 @@
 
 }
 
+
+- (void)searchClick {
+
+}
 
 - (void)loadData {
     

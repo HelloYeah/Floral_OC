@@ -11,9 +11,9 @@
 #import "HYSysCategoryServletModel.h"
 #import "UIImageView+WebCache.h"
 
-#define kTopContentViewHeight 200 * kScreenWidthRatio
+#define kTopContentViewHeight 240 * kScreenWidthRatio
 #define kMidContentViewHeight 160 * kScreenWidthRatio
-#define kBotContentViewHeight 240 * kScreenWidthRatio
+#define kBotContentViewHeight 300 * kScreenWidthRatio
 #define kSysCategoryServletHeight 80 * kScreenWidthRatio
 #define kWallpaperWidth kScreenWidth * 0.3
 #define kTitleLabelHeight 50 * kScreenWidthRatio
@@ -74,6 +74,40 @@
     
     _sysCategoryServlets = sysCategoryServlets;
     
+    [self setMidContentViewWithData:sysCategoryServlets];
+    [self setTopContentViewWithData:sysCategoryServlets];
+}
+- (void)setTopContentViewWithData:(NSArray *)sysCategoryServlets {
+    
+    CGFloat x = kLeftMargin;
+    CGFloat y = 0;
+    CGFloat width = 0.8 * kScreenWidth;
+    CGFloat height = kTopContentViewHeight * 0.7;
+    for (int i = 0; i < sysCategoryServlets.count; i++) {
+        
+        HYSysCategoryServletModel *model = sysCategoryServlets[i];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x + i * (width + kLeftMargin), y, width, height)];
+        [_topScrollView addSubview:imageView];
+        NSURL *URL = [NSURL URLWithString:model.img];
+        [imageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = model.name;
+        [label sizeToFit];
+        label.left = imageView.left + kLeftMargin;
+        label.top = imageView.bottom + kLeftMargin;
+        label.font = kBoldFont(17);
+        label.textColor = Color(50, 50, 50);
+        [_topScrollView addSubview:label];
+    }
+    _topScrollView.contentSize = CGSizeMake(sysCategoryServlets.count * (width + kLeftMargin) + kLeftMargin, 0);
+
+}
+
+
+- (void)setMidContentViewWithData:(NSArray *)sysCategoryServlets {
+    
     CGFloat x = kLeftMargin;
     CGFloat y = (kMidContentViewHeight - kTitleLabelHeight- kSysCategoryServletHeight) * 0.3;
     CGFloat width = kSysCategoryServletHeight;
@@ -100,7 +134,6 @@
     }
     _midScrollView.contentSize = CGSizeMake(sysCategoryServlets.count * (width + kLeftMargin) + kLeftMargin, 0);
 }
-
 
 - (UIView *)topContentView {
     
@@ -172,7 +205,7 @@
 - (UIScrollView *)topScrollView {
     
     if (!_topScrollView){
-        _topScrollView = [[UIScrollView alloc] init];
+        _topScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kTopContentViewHeight)];
     }
     return _topScrollView;
 }

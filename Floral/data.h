@@ -81,7 +81,7 @@ http://ec.htxq.net/rest/htxq/index/carousel
  - parameter finished:   回调的闭包
  */
 
-http://ec.htxq.net/rest/htxq/index/
+http://ec.htxq.net/rest/htxq/index/?jingList=1
 
 /**
  商场搜索(POST)
