@@ -206,6 +206,7 @@
     
     if (!_topScrollView){
         _topScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kTopContentViewHeight)];
+        _topScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _topScrollView;
 }
@@ -214,6 +215,7 @@
     
     if (!_midScrollView){
         _midScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kTitleLabelHeight, kScreenWidth, kMidContentViewHeight - kTitleLabelHeight)];
+        _midScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _midScrollView;
 }
@@ -222,6 +224,7 @@
     
     if (!_botScrollView){
         _botScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kTitleLabelHeight, kScreenWidth, kBotContentViewHeight - kTitleLabelHeight)];
+        _botScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _botScrollView;
 }

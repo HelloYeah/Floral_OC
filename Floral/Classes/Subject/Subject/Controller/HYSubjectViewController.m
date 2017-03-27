@@ -21,8 +21,8 @@
 #import "HYSysCategoryServletModel.h"
 
 #define kTopViewHeight 700 * kScreenWidthRatio
-@interface HYSubjectViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
+@interface HYSubjectViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) HYCollectionTopView *topView;
 @property (nonatomic,assign) NSInteger  currentPageIndex;
@@ -67,7 +67,6 @@
     
     HYSubjectCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYSubjectCollectionCell description] forIndexPath:indexPath];
     HYArtcleModel *artcelModel = self.dataArray[indexPath.item];
-    NSLog(@"%ld-----%@",artcelModel.ID,artcelModel.smallIcon);
     cell.artcleModel = artcelModel;
     return cell;
 }
