@@ -105,6 +105,8 @@
 		B47025BE1E85261600B621AA /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B47025A31E85261600B621AA /* YYTextWeakProxy.m */; };
 		B47025BF1E85261600B621AA /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B47025A51E85261600B621AA /* YYLabel.m */; };
 		B47025C01E85261600B621AA /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B47025A81E85261600B621AA /* YYTextView.m */; };
+		B476A35A1E88AE0C006BFBD6 /* HYDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B476A3591E88AE0C006BFBD6 /* HYDetailController.m */; };
+		B48C87D41E88A50200934AB2 /* HYSubjectCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +331,10 @@
 		B47025A61E85261600B621AA /* YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYText.h; sourceTree = "<group>"; };
 		B47025A71E85261600B621AA /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
 		B47025A81E85261600B621AA /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
+		B476A3581E88AE0C006BFBD6 /* HYDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDetailController.h; sourceTree = "<group>"; };
+		B476A3591E88AE0C006BFBD6 /* HYDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDetailController.m; sourceTree = "<group>"; };
+		B48C87D21E88A50200934AB2 /* HYSubjectCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSubjectCollectionCell.h; sourceTree = "<group>"; };
+		B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSubjectCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -840,6 +846,7 @@
 		B469F16D1E84EAD000893181 /* Subject */ = {
 			isa = PBXGroup;
 			children = (
+				B476A3561E88ADD9006BFBD6 /* Detail */,
 				B469F1811E84F49E00893181 /* Subject */,
 			);
 			path = Subject;
@@ -953,6 +960,8 @@
 			children = (
 				B469F1881E84F83100893181 /* HYCollectionSectionHeader.h */,
 				B469F1891E84F83100893181 /* HYCollectionSectionHeader.m */,
+				B48C87D21E88A50200934AB2 /* HYSubjectCollectionCell.h */,
+				B48C87D31E88A50200934AB2 /* HYSubjectCollectionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1134,6 +1143,23 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		B476A3561E88ADD9006BFBD6 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B476A3571E88ADD9006BFBD6 /* Controller */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B476A3571E88ADD9006BFBD6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B476A3581E88AE0C006BFBD6 /* HYDetailController.h */,
+				B476A3591E88AE0C006BFBD6 /* HYDetailController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1281,6 +1307,7 @@
 				B469F1351E84E72800893181 /* HYNavigationController.m in Sources */,
 				B470256A1E85260D00B621AA /* SDWebImageDownloaderOperation.m in Sources */,
 				B47025731E85260D00B621AA /* UIView+WebCacheOperation.m in Sources */,
+				B48C87D41E88A50200934AB2 /* HYSubjectCollectionCell.m in Sources */,
 				B470256D1E85260D00B621AA /* UIButton+WebCache.m in Sources */,
 				B47025AF1E85261600B621AA /* YYTextLine.m in Sources */,
 				B469F14D1E84E72800893181 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1331,6 +1358,7 @@
 				B47025AA1E85261600B621AA /* YYTextDebugOption.m in Sources */,
 				B470256E1E85260D00B621AA /* UIImage+GIF.m in Sources */,
 				B47025701E85260D00B621AA /* UIImage+WebP.m in Sources */,
+				B476A35A1E88AE0C006BFBD6 /* HYDetailController.m in Sources */,
 				B469F1551E84E72800893181 /* MJRefreshConst.m in Sources */,
 				B47025AD1E85261600B621AA /* YYTextKeyboardManager.m in Sources */,
 				B469F1AB1E8513E400893181 /* AFURLSessionManager.m in Sources */,
