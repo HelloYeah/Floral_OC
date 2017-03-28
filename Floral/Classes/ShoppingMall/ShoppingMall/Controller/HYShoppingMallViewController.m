@@ -7,6 +7,7 @@
 //
 
 #import "HYShoppingMallViewController.h"
+#import "HYNetworkTool.h"
 
 @interface HYShoppingMallViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -24,6 +25,8 @@
     [self setNav];
     
     [self.view addSubview:self.collectionView];
+    
+    [self loadData];
 }
 
 - (void)setNav {
@@ -104,6 +107,24 @@
 
 
 - (void)loadData {
+    
+    HYNetworkTool *tool = [HYNetworkTool shareTool];
+    tool.responseSerializer = [AFJSONResponseSerializer
+                          serializerWithReadingOptions:NSJSONReadingAllowFragments];
+    [tool POST:@"http://ec.htxq.net/rest/htxq/index/theme" parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_collectionView.mj_footer endRefreshing];
+        NSArray *result = responseObject[@"result"];
+        if (result.count > 0) {
+//            self.currentPageIndex += 1;
+//            [self.dataArray addObjectsFromArray:[HYArtcleModel mj_objectArrayWithKeyValuesArray:result]];
+//            [self.collectionView reloadData];
+        }else{
+            [self showHint:@"网络异常" ];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self showHint:@"网络异常"];
+    }];
 
 }
 @end

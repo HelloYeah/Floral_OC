@@ -73,6 +73,18 @@ http://ec.htxq.net/rest/htxq/item/tree
 http://ec.htxq.net/rest/htxq/index/carousel
 
 
+
+http://ec.htxq.net/servlet/SysArticleServlet?currentPageIndex=0&pageSize=10&action=topContents
+// 每周Top10的action的枚举
+enum TOP10Action : String {
+    // 作者
+case TopArticleAuthor = "topArticleAuthor"
+    // 专栏
+case TopContents = "topContents"
+}
+
+
+
 /**
  获取商城的商品列表(GET)
  
@@ -80,9 +92,13 @@ http://ec.htxq.net/rest/htxq/index/carousel
  - parameter parameters: 参数
  - parameter finished:   回调的闭包
  */
-
-http://ec.htxq.net/rest/htxq/index/?jingList=1
-
+// 商城列表的identity的枚举
+enum MallIdentity : String{
+case MallJingxuan = "jingList/1"
+case MallTheme = "theme"
+}
+http://ec.htxq.net/rest/htxq/index/
+http://ec.htxq.net/rest/htxq/index/theme
 /**
  商场搜索(POST)
  参数:"fnName": "花"
